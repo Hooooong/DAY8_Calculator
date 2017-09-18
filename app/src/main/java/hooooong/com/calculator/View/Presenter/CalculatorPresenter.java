@@ -56,7 +56,7 @@ public class CalculatorPresenter implements ICalculator.Presenter {
             calculatorData.setProgressValue(numberArray);
 
             view.setPreviewText(CommonsUtil.printPreviewValue(numberArray));
-            view.setValueText(CommonsUtil.typeChange(value));
+            view.setValueText(value);
 
             view.viewAnimation(btnView);
         }else{
@@ -65,7 +65,6 @@ public class CalculatorPresenter implements ICalculator.Presenter {
                 // ")" 가 아니라면
                 if(CommonsUtil.checkNumber(numberArray)){
                     // 숫자이면
-
                     if ("0".equals(numberArray.get(numberArray.size() - 1))) {
                         numberArray.set(numberArray.size() - 1, value);
                     } else {
@@ -81,7 +80,7 @@ public class CalculatorPresenter implements ICalculator.Presenter {
                 }
 
                 view.setPreviewText(CommonsUtil.printPreviewValue(numberArray));
-                view.setValueText(CommonsUtil.typeChange(value));
+                view.setValueText(value);
                 // 애니메이션 실행
                 view.viewAnimation(btnView);
             }
@@ -105,8 +104,9 @@ public class CalculatorPresenter implements ICalculator.Presenter {
             //Size 가 0이라면
             numberArray.add("0.");
             calculatorData.setProgressValue(numberArray);
+
             view.setPreviewText(CommonsUtil.printPreviewValue(numberArray));
-            view.setValueText(CommonsUtil.typeChange("0."));
+            view.setValueText("0.");
             view.viewAnimation(btnView);
         }else{
             //Size 가 0이 아니라면
@@ -117,7 +117,9 @@ public class CalculatorPresenter implements ICalculator.Presenter {
                     String value = numberArray.get(numberArray.size() - 1);
                     numberArray.set(numberArray.size() - 1, value + ".");
                     calculatorData.setProgressValue(numberArray);
-                    view.setValueText(CommonsUtil.typeChange(value + "."));
+
+                    view.setPreviewText(CommonsUtil.printPreviewValue(numberArray));
+                    view.setValueText(value + ".");
                     view.viewAnimation(btnView);
                 }
             }

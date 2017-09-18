@@ -14,7 +14,7 @@
     sp       : Scale independent Pixel
 
     색상표
-    #000000 ~ #FFFFFF 까지 표시 가능
+    #000000 ~ #FFFFFF 까지 표시 가ㅁ능
     R G B -> 두자리씩 가리키고 있음
     투명도가 포함되면 8자리
     #00000000 ~ #FFFFFFFF
