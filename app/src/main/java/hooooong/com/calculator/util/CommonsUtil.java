@@ -1,4 +1,4 @@
-package hooooong.com.calculator.Util;
+package hooooong.com.calculator.util;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;

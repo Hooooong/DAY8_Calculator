@@ -1,4 +1,4 @@
-package hooooong.com.calculator.Model;
+package hooooong.com.calculator.model;
 
 import java.util.ArrayList;
 

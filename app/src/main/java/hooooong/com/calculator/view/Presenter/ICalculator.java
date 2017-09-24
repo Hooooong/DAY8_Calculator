@@ -1,7 +1,7 @@
-package hooooong.com.calculator.View.Presenter;
+package hooooong.com.calculator.view.Presenter;
 
 
-import hooooong.com.calculator.Model.CalculatorData;
+import hooooong.com.calculator.model.CalculatorData;
 
 /**
  * Created by Android Hong on 2017-09-12.

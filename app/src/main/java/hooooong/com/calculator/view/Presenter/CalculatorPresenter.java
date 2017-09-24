@@ -1,11 +1,11 @@
-package hooooong.com.calculator.View.Presenter;
+package hooooong.com.calculator.view.Presenter;
 
 import android.view.View;
 
 import java.util.ArrayList;
 
-import hooooong.com.calculator.Model.CalculatorData;
-import hooooong.com.calculator.Util.CommonsUtil;
+import hooooong.com.calculator.model.CalculatorData;
+import hooooong.com.calculator.util.CommonsUtil;
 
 
 /**

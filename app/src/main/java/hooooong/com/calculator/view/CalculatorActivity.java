@@ -1,4 +1,4 @@
-package hooooong.com.calculator.View;
+package hooooong.com.calculator.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -18,10 +18,10 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-import hooooong.com.calculator.Model.CalculatorData;
+import hooooong.com.calculator.model.CalculatorData;
 import hooooong.com.calculator.R;
-import hooooong.com.calculator.View.Presenter.CalculatorPresenter;
-import hooooong.com.calculator.View.Presenter.ICalculator;
+import hooooong.com.calculator.view.Presenter.CalculatorPresenter;
+import hooooong.com.calculator.view.Presenter.ICalculator;
 
 /**
  * Created by Android Hong on 2017-09-12.
