@@ -3,7 +3,7 @@
 ### 설명
 ____________________________________________________
 
-![계산기]()
+![계산기](https://github.com/Hooooong/DAY8_Calculator/blob/master/image/Calculator.gif)
 
 - MVP 패턴을 이용한 계산기 예제
 
@@ -32,176 +32,176 @@ ____________________________________________________
 
 1. 사칙연산
 
-  > `+`, `-`, `*`, `/` 를 우선순위를 통해 `*` 와 `/`를 먼저 계산해야 한다.
+    > `+`, `-`, `*`, `/` 를 우선순위를 통해 `*` 와 `/`를 먼저 계산해야 한다.
 
-  0. 모든 숫자와 연산자는 `ArrayList` 에 연산 순으로 담겨 있다.
+    0. 모든 숫자와 연산자는 `ArrayList` 에 연산 순으로 담겨 있다.
 
-  1. `ArrayList` 의 홀수 번째에만 연산자가 있으므로 `for` 문을 통해 1, 3, 5... 번째를 찾는다.
+    1. `ArrayList` 의 홀수 번째에만 연산자가 있으므로 `for` 문을 통해 1, 3, 5... 번째를 찾는다.
 
-  2. `*` 과 `/` 일 때의 index를 통해 index-1, index+1 의 값들을 계산한다.
+    2. `*` 과 `/` 일 때의 index를 통해 index-1, index+1 의 값들을 계산한다.
 
-  3. 연산을 한 숫자를 `ArrayList` 에 index-1 에 넣고, index 번째 값을 2번 지운다.
+    3. 연산을 한 숫자를 `ArrayList` 에 index-1 에 넣고, index 번째 값을 2번 지운다.
 
-  4. 2 ~ 4 번을 `+`와 `-` 일 때로 변경한 `for` 문을 반복한다.
+    4. 2 ~ 4 번을 `+`와 `-` 일 때로 변경한 `for` 문을 반복한다.
 
-  ```java
-  for (int i = 1; i < numberArray.size()-1; i = i + 2) {
-      switch (numberArray.get(i)) {
-          case "*":
-              temp = Double.parseDouble(numberArray.get(i - 1)) * Double.parseDouble(numberArray.get(i + 1));
-              numberArray.set(i - 1, String.valueOf(temp));
-              numberArray.remove(i);
-              numberArray.remove(i);
-              i = i - 2;
-              break;
-          case "/":
-              temp = Double.parseDouble(numberArray.get(i - 1)) / Double.parseDouble(numberArray.get(i + 1));
-              numberArray.set(i - 1, String.valueOf(temp));
-              numberArray.remove(i);
-              numberArray.remove(i);
-              i = i - 2;
-              break;
-      }
-  }
+    ```java
+    for (int i = 1; i < numberArray.size()-1; i = i + 2) {
+        switch (numberArray.get(i)) {
+            case "*":
+                temp = Double.parseDouble(numberArray.get(i - 1)) * Double.parseDouble(numberArray.get(i + 1));
+                numberArray.set(i - 1, String.valueOf(temp));
+                numberArray.remove(i);
+                numberArray.remove(i);
+                i = i - 2;
+                break;
+            case "/":
+                temp = Double.parseDouble(numberArray.get(i - 1)) / Double.parseDouble(numberArray.get(i + 1));
+                numberArray.set(i - 1, String.valueOf(temp));
+                numberArray.remove(i);
+                numberArray.remove(i);
+                i = i - 2;
+                break;
+        }
+    }
 
-  for(int i = 1; i<numberArray.size()-1; i = i+2){
-      switch (numberArray.get(i)) {
-          case "+":
-              temp = Double.parseDouble(numberArray.get(i - 1)) + Double.parseDouble(numberArray.get(i + 1));
-              numberArray.set(i - 1, String.valueOf(temp));
-              numberArray.remove(i);
-              numberArray.remove(i);
-              i = i - 2;
-              break;
-          case "-":
-              temp = Double.parseDouble(numberArray.get(i - 1)) - Double.parseDouble(numberArray.get(i + 1));
-              numberArray.set(i - 1, String.valueOf(temp));
-              numberArray.remove(i);
-              numberArray.remove(i);
-              i = i - 2;
-              break;
-      }
-  }
-  ```
+    for(int i = 1; i<numberArray.size()-1; i = i+2){
+        switch (numberArray.get(i)) {
+            case "+":
+                temp = Double.parseDouble(numberArray.get(i - 1)) + Double.parseDouble(numberArray.get(i + 1));
+                numberArray.set(i - 1, String.valueOf(temp));
+                numberArray.remove(i);
+                numberArray.remove(i);
+                i = i - 2;
+                break;
+            case "-":
+                temp = Double.parseDouble(numberArray.get(i - 1)) - Double.parseDouble(numberArray.get(i + 1));
+                numberArray.set(i - 1, String.valueOf(temp));
+                numberArray.remove(i);
+                numberArray.remove(i);
+                i = i - 2;
+                break;
+        }
+    }
+    ```
 
 2. 소수점 추가
 
-  > 숫자에 소수점을 붙일 수 있다. 소수점은 단 하나만 있어야 한다.
+    > 숫자에 소수점을 붙일 수 있다. 소수점은 단 하나만 있어야 한다.
 
-  0. 숫자인지 아닌지 검사한다. 숫자가 아니면 점을 붙일 수 없다.
+    0. 숫자인지 아닌지 검사한다. 숫자가 아니면 점을 붙일 수 없다.
 
-  1. 점이 있는지 없는지 검사한다.
+    1. 점이 있는지 없는지 검사한다.
 
-  2. 점이 없으면 숫자에 점을 붙인다.
+    2. 점이 없으면 숫자에 점을 붙인다.
 
-  ```java
-  if(CommonsUtil.checkNumber(numberArray)){
-      // 정수,실수 숫자이면
-      if(!CommonsUtil.checkDot(numberArray)){
-          // 점이 없다면
-          String value = numberArray.get(numberArray.size() - 1);
-          numberArray.set(numberArray.size() - 1, value + ".");
-          calculatorData.setProgressValue(numberArray);
+    ```java
+    if(CommonsUtil.checkNumber(numberArray)){
+        // 정수,실수 숫자이면
+        if(!CommonsUtil.checkDot(numberArray)){
+            // 점이 없다면
+            String value = numberArray.get(numberArray.size() - 1);
+            numberArray.set(numberArray.size() - 1, value + ".");
+            calculatorData.setProgressValue(numberArray);
 
-          view.setPreviewText(CommonsUtil.printPreviewValue(numberArray));
-          view.setValueText(value + ".");
-          view.viewAnimation(btnView);
-      }
-  }
-  ```
+            view.setPreviewText(CommonsUtil.printPreviewValue(numberArray));
+            view.setValueText(value + ".");
+            view.viewAnimation(btnView);
+        }
+    }
+    ```
 
 3. 괄호 추가
 
-  > `(`, `)` 의 갯수가 일치해야 하고, 괄호 안에 있는 연산자가 우선적으로 이뤄저야 한다. 가장 오른쪽 `(`의 index 와 가장 왼쪽 `)`의 index 를 통하여 계산을 반복적으로 실행한다.
+    > `(`, `)` 의 갯수가 일치해야 하고, 괄호 안에 있는 연산자가 우선적으로 이뤄저야 한다. 가장 오른쪽 `(`의 index 와 가장 왼쪽 `)`의 index 를 통하여 계산을 반복적으로 실행한다.
 
-  1. `while` 문을 통해 괄호가 있을 때 계산을 반복적으로 이룬다.
+    1. `while` 문을 통해 괄호가 있을 때 계산을 반복적으로 이룬다.
 
-  2. `(` 의 index 와 `)` 의 index 사이의 숫자와 연산자를 `for`을 통해 별도 ArrayList 에 담는다.
+    2. `(` 의 index 와 `)` 의 index 사이의 숫자와 연산자를 `for`을 통해 별도 ArrayList 에 담는다.
 
-  3. 별도 ArrayList 에 담은 숫자와 연산자들을 `사칙연산`의 계산식을 통해 계산한다.
+    3. 별도 ArrayList 에 담은 숫자와 연산자들을 `사칙연산`의 계산식을 통해 계산한다.
 
-  4. 모든 괄호의 계산이 끝난 후 기존 ArrayList `(` 의  index에 값을 넣어준다.
+    4. 모든 괄호의 계산이 끝난 후 기존 ArrayList `(` 의  index에 값을 넣어준다.
 
-  5. `)`의  index - `(` 의 index 크기 만큼 기존 ArrayList에 값들을 지워준다.
+    5. `)`의  index - `(` 의 index 크기 만큼 기존 ArrayList에 값들을 지워준다.
 
-  6. 그 이후 `사칙연산` 을 추가적으로 한다.
+    6. 그 이후 `사칙연산` 을 추가적으로 한다.
 
-  ```java
-  // '(' 괄호의 갯수가 0이 아닐때까지 돈다
-  while (CommonsUtil.getParenthesesStartCount(numberArray) != 0) {
+    ```java
+    // '(' 괄호의 갯수가 0이 아닐때까지 돈다
+    while (CommonsUtil.getParenthesesStartCount(numberArray) != 0) {
 
-      // 마지막 "(" 의 index
-      int firstIndex = CommonsUtil.getParenthesesStartedLastIndex(numberArray);
-      // 첫번째 ")" 의 index
-      int lastIndex = CommonsUtil.getParenthesesEndedFirstIndex(numberArray);
+        // 마지막 "(" 의 index
+        int firstIndex = CommonsUtil.getParenthesesStartedLastIndex(numberArray);
+        // 첫번째 ")" 의 index
+        int lastIndex = CommonsUtil.getParenthesesEndedFirstIndex(numberArray);
 
-      // 임시저장소
-      ArrayList<String> tempNumArray = new ArrayList<>();
+        // 임시저장소
+        ArrayList<String> tempNumArray = new ArrayList<>();
 
-      // 제일 마지막에 나오는 괄호 안 문자들을 tempNumberArray 에 넣는다.
-      for (int i = firstIndex + 1; i < lastIndex; i++) {
-          tempNumArray.add(numberArray.get(i));
-      }
+        // 제일 마지막에 나오는 괄호 안 문자들을 tempNumberArray 에 넣는다.
+        for (int i = firstIndex + 1; i < lastIndex; i++) {
+            tempNumArray.add(numberArray.get(i));
+        }
 
-      // 계산
-      for (int i = 1; i < tempNumArray.size(); i = i + 2) {
-          switch (tempNumArray.get(i)) {
-              case "*":
-                  temp = Double.parseDouble(tempNumArray.get(i - 1)) * Double.parseDouble(tempNumArray.get(i + 1));
-                  tempNumArray.set(i - 1, String.valueOf(temp));
-                  tempNumArray.remove(i);
-                  tempNumArray.remove(i);
-                  i = i - 2;
-                  break;
-              case "/":
-                  temp = Double.parseDouble(tempNumArray.get(i - 1)) / Double.parseDouble(tempNumArray.get(i + 1));
-                  tempNumArray.set(i - 1, String.valueOf(temp));
-                  tempNumArray.remove(i);
-                  tempNumArray.remove(i);
-                  i = i - 2;
-                  break;
-          }
-      }
+        // 계산
+        for (int i = 1; i < tempNumArray.size(); i = i + 2) {
+            switch (tempNumArray.get(i)) {
+                case "*":
+                    temp = Double.parseDouble(tempNumArray.get(i - 1)) * Double.parseDouble(tempNumArray.get(i + 1));
+                    tempNumArray.set(i - 1, String.valueOf(temp));
+                    tempNumArray.remove(i);
+                    tempNumArray.remove(i);
+                    i = i - 2;
+                    break;
+                case "/":
+                    temp = Double.parseDouble(tempNumArray.get(i - 1)) / Double.parseDouble(tempNumArray.get(i + 1));
+                    tempNumArray.set(i - 1, String.valueOf(temp));
+                    tempNumArray.remove(i);
+                    tempNumArray.remove(i);
+                    i = i - 2;
+                    break;
+            }
+        }
 
-      for(int i = 1; i<tempNumArray.size(); i = i+2){
-          switch (tempNumArray.get(i)) {
-              case "+":
-                  temp = Double.parseDouble(tempNumArray.get(i - 1)) + Double.parseDouble(tempNumArray.get(i + 1));
-                  tempNumArray.set(i - 1, String.valueOf(temp));
-                  tempNumArray.remove(i);
-                  tempNumArray.remove(i);
-                  i = i - 2;
-                  break;
-              case "-":
-                  temp = Double.parseDouble(tempNumArray.get(i - 1)) - Double.parseDouble(tempNumArray.get(i + 1));
-                  tempNumArray.set(i - 1, String.valueOf(temp));
-                  tempNumArray.remove(i);
-                  tempNumArray.remove(i);
-                  i = i - 2;
-                  break;
-          }
-      }
+        for(int i = 1; i<tempNumArray.size(); i = i+2){
+            switch (tempNumArray.get(i)) {
+                case "+":
+                    temp = Double.parseDouble(tempNumArray.get(i - 1)) + Double.parseDouble(tempNumArray.get(i + 1));
+                    tempNumArray.set(i - 1, String.valueOf(temp));
+                    tempNumArray.remove(i);
+                    tempNumArray.remove(i);
+                    i = i - 2;
+                    break;
+                case "-":
+                    temp = Double.parseDouble(tempNumArray.get(i - 1)) - Double.parseDouble(tempNumArray.get(i + 1));
+                    tempNumArray.set(i - 1, String.valueOf(temp));
+                    tempNumArray.remove(i);
+                    tempNumArray.remove(i);
+                    i = i - 2;
+                    break;
+            }
+        }
 
-      // 계산이 끝난 후 index 에 넣고
-      numberArray.set(firstIndex, tempNumArray.get(0));
-      for (int i = 0; i < lastIndex - firstIndex; i++) {
-          numberArray.remove(firstIndex + 1);
-      }
-  }
-  ```
+        // 계산이 끝난 후 index 에 넣고
+        numberArray.set(firstIndex, tempNumArray.get(0));
+        for (int i = 0; i < lastIndex - firstIndex; i++) {
+            numberArray.remove(firstIndex + 1);
+        }
+    }
+    ```
 
 4. 애니메이션 추가
 
-  - `Button` 을 눌렀을 경우 `Dummy`를 생성하여 날라가는 애니메이션이다.
+    - `Button` 을 눌렀을 경우 `Dummy`를 생성하여 날라가는 애니메이션이다.
 
-  - 참조 : [Animation](https://github.com/Hooooong/DAY9_Animation), [DummyAnimation](https://github.com/Hooooong/DAY10_DummyAnimation)
+    - 참조 : [Animation](https://github.com/Hooooong/DAY9_Animation), [DummyAnimation](https://github.com/Hooooong/DAY10_DummyAnimation)
 
 ### Code Review
 ____________________________________________________
 
 - 프로젝트 구조
 
-  ![프로젝트 이미지]()
+  ![프로젝트 이미지](https://github.com/Hooooong/DAY8_Calculator/blob/master/image/%ED%8F%B4%EB%8D%94%20%EA%B5%AC%EC%A1%B0.PNG)
 
 - CalculatorActivity.java
 
