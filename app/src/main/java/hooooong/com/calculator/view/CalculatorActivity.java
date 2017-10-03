@@ -31,7 +31,7 @@ public class CalculatorActivity extends AppCompatActivity implements ICalculator
 
     private ConstraintLayout parentPanel;
 
-    private CalculatorPresenter presenter;
+    private ICalculator.Presenter presenter;
 
     TextView valueTxt;
     TextView previewTxt;
@@ -39,6 +39,7 @@ public class CalculatorActivity extends AppCompatActivity implements ICalculator
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         /**
          * ActionBar 와 상태 창 없애기
          */
@@ -53,9 +54,15 @@ public class CalculatorActivity extends AppCompatActivity implements ICalculator
 
         setContentView(R.layout.activity_calculator);
 
+        initPresenter();
         initView();
         initListener();
+    }
 
+    /**
+     * Presenter 초기화
+     */
+    private void initPresenter() {
         presenter = new CalculatorPresenter();
         presenter.attachView(this);
         presenter.setCalculatorData(CalculatorData.getInstance());
@@ -192,7 +199,7 @@ public class CalculatorActivity extends AppCompatActivity implements ICalculator
 
     /**
      * 숫자 현황 보여주는 메소드
-     * ㄴ
+     *
      * @param value
      */
     @Override

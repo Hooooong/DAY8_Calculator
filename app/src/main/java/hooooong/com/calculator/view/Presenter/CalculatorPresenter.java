@@ -1,5 +1,6 @@
 package hooooong.com.calculator.view.Presenter;
 
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -240,7 +241,6 @@ public class CalculatorPresenter implements ICalculator.Presenter {
     public void resultValue(View btnView) {
         // 연산 하고 그 값을 보내줘야 한다.
 
-        // 1. Model 에서 값을 가져온다.
         // Model 에 저장되어 있는 계산식
         ArrayList<String> numberArray = calculatorData.getProgressValue();
         double temp;
@@ -254,7 +254,7 @@ public class CalculatorPresenter implements ICalculator.Presenter {
                 return;
 
             } else {
-                // 괄호의 갯수가
+                // '(' 괄호의 갯수가 0이 아닐때까지 돈다
                 while (CommonsUtil.getParenthesesStartCount(numberArray) != 0) {
 
                     // 마지막 "(" 의 index
@@ -272,7 +272,7 @@ public class CalculatorPresenter implements ICalculator.Presenter {
 
                     // 계산
                     for (int i = 1; i < tempNumArray.size(); i = i + 2) {
-                        switch (numberArray.get(i)) {
+                        switch (tempNumArray.get(i)) {
                             case "*":
                                 temp = Double.parseDouble(tempNumArray.get(i - 1)) * Double.parseDouble(tempNumArray.get(i + 1));
                                 tempNumArray.set(i - 1, String.valueOf(temp));
@@ -291,7 +291,7 @@ public class CalculatorPresenter implements ICalculator.Presenter {
                     }
 
                     for(int i = 1; i<tempNumArray.size(); i = i+2){
-                        switch (numberArray.get(i)) {
+                        switch (tempNumArray.get(i)) {
                             case "+":
                                 temp = Double.parseDouble(tempNumArray.get(i - 1)) + Double.parseDouble(tempNumArray.get(i + 1));
                                 tempNumArray.set(i - 1, String.valueOf(temp));
@@ -308,6 +308,7 @@ public class CalculatorPresenter implements ICalculator.Presenter {
                                 break;
                         }
                     }
+
 
                     // 계산이 끝난 후 index 에 넣고
                     numberArray.set(firstIndex, tempNumArray.get(0));
